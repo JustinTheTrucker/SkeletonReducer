@@ -16,13 +16,10 @@ public class SkeletonReducer extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Save default config if it doesn't exist
         saveDefaultConfig();
 
-        // Load configuration
         loadConfig();
 
-        // Register event listener
         getServer().getPluginManager().registerEvents(this, this);
 
         getLogger().info("SkeletonReducer plugin enabled! Skeleton spawn reduction: " +
@@ -38,7 +35,6 @@ public class SkeletonReducer extends JavaPlugin implements Listener {
         FileConfiguration config = getConfig();
         spawnReductionChance = config.getDouble("spawn-reduction-percentage", 50.0) / 100.0;
 
-        // Ensure the value is between 0 and 1
         if (spawnReductionChance < 0) spawnReductionChance = 0;
         if (spawnReductionChance > 1) spawnReductionChance = 1;
     }
@@ -76,16 +72,13 @@ public class SkeletonReducer extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-        // Check if the spawning entity is a skeleton
         if (event.getEntityType() == EntityType.SKELETON) {
-            // Check spawn reasons we want to affect (natural spawns, spawners, etc.)
             CreatureSpawnEvent.SpawnReason reason = event.getSpawnReason();
 
             if (reason == CreatureSpawnEvent.SpawnReason.NATURAL ||
                     reason == CreatureSpawnEvent.SpawnReason.SPAWNER ||
                     reason == CreatureSpawnEvent.SpawnReason.SPAWNER_EGG) {
 
-                // Roll the dice - cancel spawn based on reduction percentage
                 if (Math.random() < spawnReductionChance) {
                     event.setCancelled(true);
                 }

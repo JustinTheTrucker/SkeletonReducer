@@ -1,0 +1,6 @@
+# config.yml - Place this in src/main/resources/
+# Percentage of skeleton spawns to prevent (0-100)
+# 50 = 50% of skeletons won't spawn
+# 90 = 90% of skeletons won't spawn
+# 0 = no reduction (all skeletons spawn normally)
+spawn-reduction-percentage: 50.0

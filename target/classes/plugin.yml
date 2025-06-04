@@ -1,0 +1,19 @@
+name: SkeletonReducer
+version: '1.0-SNAPSHOT'
+main: net.justinthetrucker.SkeletonReducer
+api-version: '1.21'
+description: Reduces skeleton spawn rates in your Minecraft world
+author: JustinTheTrucker
+website: https://github.com/justinthetrucker
+
+commands:
+  skeletonreducer:
+    description: Main command for SkeletonReducer plugin
+    usage: /skeletonreducer reload
+    permission: skeletonreducer.admin
+    permission-message: You don't have permission to use this command
+
+permissions:
+  skeletonreducer.admin:
+    description: Allows access to admin commands
+    default: op
